@@ -1,0 +1,53 @@
+---
+import { Image } from 'astro:assets';
+import siteConfig from '../../site.config.mjs';
+import { getHeroWork } from '../data/imageStore';
+
+const owner = siteConfig.owner;
+const tagline = siteConfig.tagline;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const heroWork = await getHeroWork();
+---
+
+<div class="absolute inset-x-0 top-20 bottom-28 z-0">
+	<Image
+		src={heroWork.coverImage}
+		alt={heroWork.title}
+		quality={92}
+		format="webp"
+		class="h-full w-full object-cover"
+		width={heroWork.coverImage.width}
+		height={heroWork.coverImage.height}
+	/>
+	<div class="absolute inset-0 bg-[#fbfaf7]/70"></div>
+</div>
+
+<div class="container-custom relative z-10 w-full">
+	<div class="max-w-3xl">
+		<p class="mb-5 text-sm uppercase tracking-[0.22em] text-[#7b1e25]">Opera Costume Portfolio</p>
+		<h1 class="text-4xl md:text-6xl lg:text-7xl font-semibold leading-tight text-[#241f1c]">
+			{owner}
+		</h1>
+		<p class="mt-5 max-w-2xl text-xl md:text-2xl leading-relaxed text-[#3d3731]">
+			{tagline}
+		</p>
+		<p class="mt-6 max-w-xl text-base leading-8 text-[#5d554c]">
+			A portfolio tracing stage characters, traditional visual languages, costume sketches,
+			material studies, and finished productions across Chinese theatre and opera.
+		</p>
+		<div class="mt-10 flex flex-wrap gap-4">
+			<a
+				href={`${base}/works`}
+				class="inline-flex h-12 items-center border border-[#241f1c] bg-[#241f1c] px-6 text-sm font-medium text-white transition-colors hover:bg-[#7b1e25] hover:border-[#7b1e25]"
+			>
+				View Works
+			</a>
+			<a
+				href={`${base}/works/${heroWork.id}`}
+				class="inline-flex h-12 items-center border border-[#c6aa65] px-6 text-sm font-medium text-[#241f1c] transition-colors hover:bg-[#f1eadc]"
+			>
+				Featured: {heroWork.title}
+			</a>
+		</div>
+	</div>
+</div>

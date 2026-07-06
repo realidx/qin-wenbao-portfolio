@@ -1,0 +1,74 @@
+---
+import { Mail, MessageCircle } from 'lucide-astro';
+import MainLayout from '../layouts/MainLayout.astro';
+import siteConfig from '../../site.config.mjs';
+import SocialIcon from '../components/SocialIcon.astro';
+
+const email = siteConfig.email;
+const wechat = siteConfig.wechat;
+const socialLinks = siteConfig.socialLinks;
+const hasEmail = Boolean(email);
+const hasWechat = Boolean(wechat);
+---
+
+<MainLayout>
+	<section class="pt-32 pb-24 md:pb-32">
+		<div class="container-custom">
+			<div class="max-w-3xl">
+				<p class="mb-4 text-sm uppercase tracking-[0.22em] text-[#7b1e25]">Contact</p>
+				<h1 class="text-4xl md:text-6xl font-semibold text-[#241f1c]">Contact</h1>
+				<p class="mt-6 text-base leading-8 text-[#5d554c]">
+					For production design, theatre costume, character styling, exhibition, or research-related
+					inquiries, please use the contact details below once they are available.
+				</p>
+			</div>
+
+			<div class="mt-16 grid gap-10 md:grid-cols-2">
+				{
+					hasEmail ? (
+						<a
+							href={`mailto:${email}`}
+							class="group flex items-start gap-5 border-t border-[#d8d0c0] py-8"
+						>
+							<span class="grid h-11 w-11 shrink-0 place-items-center border border-[#c6aa65] text-[#7b1e25]">
+								<Mail size={20} />
+							</span>
+							<span>
+								<span class="block text-sm uppercase tracking-[0.18em] text-[#8a7b6d]">
+									Email
+								</span>
+								<span class="mt-3 block text-xl text-[#241f1c] group-hover:text-[#7b1e25]">
+									{email}
+								</span>
+							</span>
+						</a>
+					) : (
+						<div class="flex items-start gap-5 border-t border-[#d8d0c0] py-8">
+							<span class="grid h-11 w-11 shrink-0 place-items-center border border-[#c6aa65] text-[#7b1e25]">
+								<Mail size={20} />
+							</span>
+							<div>
+								<p class="text-sm uppercase tracking-[0.18em] text-[#8a7b6d]">Email</p>
+								<p class="mt-3 text-xl text-[#241f1c]">To be added</p>
+							</div>
+						</div>
+					)
+				}
+
+				<div class="flex items-start gap-5 border-t border-[#d8d0c0] py-8">
+					<span class="grid h-11 w-11 shrink-0 place-items-center border border-[#c6aa65] text-[#7b1e25]">
+						<MessageCircle size={20} />
+					</span>
+					<div>
+						<p class="text-sm uppercase tracking-[0.18em] text-[#8a7b6d]">WeChat</p>
+						<p class="mt-3 text-xl text-[#241f1c]">{hasWechat ? wechat : 'To be added'}</p>
+					</div>
+				</div>
+			</div>
+
+			<div class="mt-8 flex gap-6 border-t border-[#d8d0c0] pt-8">
+				{socialLinks.map((socialLink) => <SocialIcon socialLink={socialLink} />)}
+			</div>
+		</div>
+	</section>
+</MainLayout>

@@ -1,0 +1,26 @@
+---
+import MainLayout from '../../layouts/MainLayout.astro';
+import WorkCard from '../../components/WorkCard.astro';
+import { getWorks } from '../../data/imageStore';
+
+const works = await getWorks();
+---
+
+<MainLayout>
+	<section class="pt-32 pb-20 md:pb-28">
+		<div class="container-custom">
+			<div class="mb-14 max-w-3xl">
+				<p class="mb-4 text-sm uppercase tracking-[0.22em] text-[#7b1e25]">Portfolio</p>
+				<h1 class="text-4xl md:text-6xl font-semibold text-[#241f1c]">Works</h1>
+				<p class="mt-6 text-base leading-8 text-[#5d554c]">
+					A portfolio of productions and work series, bringing together stage costumes,
+					character styling, sketches, detail studies, and visual records from concept to performance.
+				</p>
+			</div>
+
+			<div class="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+				{works.map((work) => <WorkCard work={work} />)}
+			</div>
+		</div>
+	</section>
+</MainLayout>
