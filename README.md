@@ -1,6 +1,6 @@
 # Opera Costume Portfolio
 
-An Astro portfolio site for a Chinese opera and stage costume design artist. It keeps the original template's optimized image pipeline, justified image grid, and GLightbox viewing experience, while using a work-series content model for theatre productions and costume collections.
+An Astro portfolio site for a Chinese opera and stage costume design artist. It includes a Decap CMS admin interface for editing portfolio works, image galleries, and the About page through GitHub-backed content files.
 
 ## Local Development
 
@@ -18,7 +18,13 @@ npm run preview
 
 ## Content
 
-Works are maintained in `src/gallery/gallery.yaml`. Each work series has its own image folder under `src/gallery/`.
+Works are maintained in `src/content/works/*.md`. Uploaded images live in `public/uploads/`.
+
+Admin entry:
+
+```text
+https://qinwenbao.art/admin
+```
 
 Current sample works:
 

@@ -1,7 +1,7 @@
 ---
 import MainLayout from '../../layouts/MainLayout.astro';
 import PhotoGrid from '../../components/PhotoGrid.astro';
-import { getWork, getWorks } from '../../data/imageStore';
+import { getImagesForWork, getWork, getWorks } from '../../data/imageStore';
 
 export const getStaticPaths = async () => {
 	const works = await getWorks();
@@ -12,6 +12,7 @@ export const getStaticPaths = async () => {
 
 const { work: workId } = Astro.params;
 const work = await getWork(workId);
+const images = await getImagesForWork(workId);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 
 if (!work) {
@@ -59,7 +60,7 @@ if (!work) {
 
 	<section class="pb-24 md:pb-32">
 		<div class="container-custom">
-			<PhotoGrid images={work.galleryImages} />
+			<PhotoGrid images={images} />
 		</div>
 	</section>
 </MainLayout>

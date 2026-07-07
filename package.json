@@ -9,8 +9,7 @@
 		"astro": "ASTRO_TELEMETRY_DISABLED=1 astro",
 		"prettier": "prettier . --write",
 		"test": "vitest",
-		"lint": "eslint . --ext .ts,.js,.astro",
-		"generate": "npx tsx src/data/gallery-generator.ts src/gallery"
+		"lint": "eslint . --ext .ts,.js,.astro"
 	},
 	"devDependencies": {
 		"@tailwindcss/typography": "^0.5.16",

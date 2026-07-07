@@ -1,76 +1,58 @@
 # Content Guide
 
-This MVP is maintained through `src/gallery/gallery.yaml` and image folders under `src/gallery/`.
+The site is now prepared for Decap CMS. Works are stored as Markdown files in `src/content/works/`, and uploaded media is stored under `public/uploads/`.
 
-## Add A New Work Series
+## Admin URL
 
-1. Create a folder under `src/gallery/`.
-
-```text
-src/gallery/new-work-id/
-```
-
-2. Add a cover image and gallery images.
+After Decap authentication is configured, editors can use:
 
 ```text
-src/gallery/new-work-id/
-  cover.jpg
-  01-stage.jpg
-  02-sketch.jpg
-  03-detail.jpg
+https://qinwenbao.art/admin
 ```
 
-3. Add an album entry to `src/gallery/gallery.yaml`.
+The admin UI manages:
 
-```yaml
-albums:
-  - id: new-work-id
-    title: New Work Title
-    subtitle: English Subtitle
-    year: "2026"
-    category: Kunqu Opera
-    type: Stage Costume Design
-    role: Role / Theme
-    cover: new-work-id/cover.jpg
-    description: >
-      Add the work description here, including concept, character relationships,
-      color direction, material choices, and production context.
-    images:
-      - src: new-work-id/01-stage.jpg
-        title: Stage Styling
-        caption: Add an image caption here.
-        type: stage_photo
-      - src: new-work-id/02-sketch.jpg
-        title: Costume Sketch
-        caption: Add an image caption here.
-        type: sketch
-    featured: false
-    order: 4
+- Works
+- About page text
+- Cover images
+- Gallery images
+- Featured status
+- Sort order
+
+## Content Files
+
+Each work is one Markdown file:
+
+```text
+src/content/works/da-shun.md
+src/content/works/nanke-mengji.md
+src/content/works/zaixu-hongmeiyuan.md
 ```
 
-4. Preview locally.
+Images uploaded from Decap go under:
 
-```bash
-npm run dev
+```text
+public/uploads/
 ```
 
-5. Check the production build.
+Existing placeholder images are currently organized as:
 
-```bash
-npm run build
-npm run preview
+```text
+public/uploads/works/da-shun/
+public/uploads/works/nanke-mengji/
+public/uploads/works/zaixu-hongmeiyuan/
 ```
 
-## Required Album Fields
+## Work Fields
 
 - `id`: URL slug. Use lowercase English, numbers, and hyphens.
-- `title`: Chinese work title.
-- `subtitle`: Optional English subtitle.
-- `year`: Year as a string.
+- `title`: Work title.
+- `subtitle`: Optional subtitle.
+- `year`: Year or label.
 - `category`: Opera or theatre category, such as `Kunqu Opera`, `Peking Opera`, `Yue Opera`, or `Spoken Drama`.
 - `type`: Work type, such as `Stage Costume Design` or `Character Styling`.
-- `role`: Main roles or theme.
-- `cover`: Cover image path relative to `src/gallery/`.
+- `role`: Main role, theme, or design focus.
+- `cover`: Cover image path.
 - `description`: Work description.
 - `images`: Detail image list.
 - `featured`: `true` shows the work on the home page.
@@ -103,10 +85,6 @@ peony-pavilion-du-liniang-first-revision-final-2.jpg
 IMG_9382.JPG
 ```
 
-## Current Sample Works
+## Authentication Note
 
-- `da-shun`: Peking Opera Da Shun
-- `nanke-mengji`: Kunqu Opera Nanke Mengji
-- `zaixu-hongmeiyuan`: Qinqiang Opera Zaixu Hongmeiyuan
-
-The sample images are placeholders copied from the original template and can be replaced with real artwork later.
+The `/admin` page and Decap CMS configuration are present in the repo. To let a non-developer editor save changes, Decap still needs GitHub OAuth authentication configured for this Cloudflare-hosted site. Once configured, Decap commits content changes to GitHub, and Cloudflare deploys automatically.

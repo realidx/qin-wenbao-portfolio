@@ -1,5 +1,4 @@
 ---
-import { Image } from 'astro:assets';
 import siteConfig from '../../site.config.mjs';
 import { getHeroWork } from '../data/imageStore';
 
@@ -10,14 +9,12 @@ const heroWork = await getHeroWork();
 ---
 
 <div class="absolute inset-x-0 top-20 bottom-28 z-0">
-	<Image
-		src={heroWork.coverImage}
+	<img
+		src={heroWork.cover}
 		alt={heroWork.title}
-		quality={92}
-		format="webp"
+		loading="eager"
+		decoding="async"
 		class="h-full w-full object-cover"
-		width={heroWork.coverImage.width}
-		height={heroWork.coverImage.height}
 	/>
 	<div class="absolute inset-0 bg-[#fbfaf7]/70"></div>
 </div>

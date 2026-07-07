@@ -1,0 +1,104 @@
+backend:
+  name: github
+  repo: realidx/qin-wenbao-portfolio
+  branch: main
+
+site_url: https://qinwenbao.art
+display_url: https://qinwenbao.art
+logo_url: https://qinwenbao.art/favicon.ico
+
+media_folder: public/uploads
+public_folder: /uploads
+
+collections:
+  - name: works
+    label: Works
+    label_singular: Work
+    folder: src/content/works
+    create: true
+    delete: true
+    extension: md
+    format: frontmatter
+    slug: "{{slug}}"
+    summary: "{{title}}"
+    fields:
+      - label: ID / URL Slug
+        name: id
+        widget: string
+        hint: Use lowercase letters, numbers, and hyphens only. This becomes /works/<id>.
+      - label: Title
+        name: title
+        widget: string
+      - label: Subtitle
+        name: subtitle
+        widget: string
+        required: false
+      - label: Year
+        name: year
+        widget: string
+      - label: Genre
+        name: category
+        widget: string
+        hint: Example: Peking Opera, Kunqu Opera, Qinqiang Opera, Spoken Drama.
+      - label: Type
+        name: type
+        widget: string
+        hint: Example: Stage Design and Costume Styling.
+      - label: Role / Focus
+        name: role
+        widget: string
+      - label: Cover Image
+        name: cover
+        widget: image
+      - label: Description
+        name: description
+        widget: text
+      - label: Gallery Images
+        name: images
+        widget: list
+        min: 1
+        fields:
+          - label: Image
+            name: src
+            widget: image
+          - label: Title
+            name: title
+            widget: string
+          - label: Caption
+            name: caption
+            widget: text
+            required: false
+          - label: Type
+            name: type
+            widget: select
+            required: false
+            options:
+              - stage_photo
+              - sketch
+              - detail
+              - backstage
+              - exhibition
+      - label: Featured on Home Page
+        name: featured
+        widget: boolean
+        default: false
+      - label: Sort Order
+        name: order
+        widget: number
+        value_type: int
+        min: 1
+        default: 10
+
+  - name: pages
+    label: Pages
+    files:
+      - name: about
+        label: About Page
+        file: src/content/about.md
+        fields:
+          - label: Title
+            name: title
+            widget: string
+          - label: Body
+            name: body
+            widget: markdown
