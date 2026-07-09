@@ -29,3 +29,9 @@ src/data/__tests__/gallery/gallery.yaml
 # local source materials
 sources/
 public/uploads/documents/pq2023-qin-wenbao.pdf
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+!.env.example
