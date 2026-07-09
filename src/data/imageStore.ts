@@ -1,4 +1,4 @@
-import type { Image, Work, WorkImage } from './galleryData.ts';
+import type { Exhibition, Image, Work, WorkImage } from './galleryData.ts';
 
 export class ImageStoreError extends Error {
 	constructor(message: string) {
@@ -11,7 +11,15 @@ type WorkModule = {
 	frontmatter: Work;
 };
 
+type ExhibitionModule = {
+	frontmatter: Exhibition;
+};
+
 const workModules = import.meta.glob<WorkModule>('/src/content/works/*.md', {
+	eager: true,
+});
+
+const exhibitionModules = import.meta.glob<ExhibitionModule>('/src/content/exhibitions/*.md', {
 	eager: true,
 });
 
@@ -46,6 +54,27 @@ export const getHeroWork = async (): Promise<Work> => {
 	return heroWork;
 };
 
+export const getExhibitions = async (): Promise<Exhibition[]> => {
+	const exhibitions = Object.values(exhibitionModules).map((module) =>
+		validateExhibition(module.frontmatter),
+	);
+	return exhibitions.sort(sortItems);
+};
+
+export const getFeaturedExhibitions = async (): Promise<Exhibition[]> => {
+	return (await getExhibitions()).filter((exhibition) => exhibition.featured);
+};
+
+export const getExhibition = async (id: string | undefined): Promise<Exhibition | undefined> => {
+	if (!id) return undefined;
+	return (await getExhibitions()).find((exhibition) => exhibition.id === id);
+};
+
+export const getImagesForExhibition = async (id: string | undefined): Promise<Image[]> => {
+	const exhibition = await getExhibition(id);
+	return exhibition?.images.map(processGalleryImage) ?? [];
+};
+
 function validateWork(work: Work): Work {
 	const requiredFields: Array<keyof Work> = [
 		'id',
@@ -72,6 +101,31 @@ function validateWork(work: Work): Work {
 	return work;
 }
 
+function validateExhibition(exhibition: Exhibition): Exhibition {
+	const requiredFields: Array<keyof Exhibition> = [
+		'id',
+		'title',
+		'year',
+		'location',
+		'role',
+		'cover',
+		'description',
+		'images',
+	];
+
+	for (const field of requiredFields) {
+		if (!exhibition[field]) {
+			throw new ImageStoreError(`Exhibition ${exhibition.id ?? 'unknown'} is missing ${field}.`);
+		}
+	}
+
+	if (!Array.isArray(exhibition.images) || exhibition.images.length === 0) {
+		throw new ImageStoreError(`Exhibition ${exhibition.id} must contain at least one image.`);
+	}
+
+	return exhibition;
+}
+
 function processGalleryImage(image: WorkImage): Image {
 	return {
 		src: image.src,
@@ -82,6 +136,10 @@ function processGalleryImage(image: WorkImage): Image {
 }
 
 function sortWorks(a: Work, b: Work) {
+	return sortItems(a, b);
+}
+
+function sortItems(a: { order?: number; year: string }, b: { order?: number; year: string }) {
 	const orderA = a.order ?? Number.MAX_SAFE_INTEGER;
 	const orderB = b.order ?? Number.MAX_SAFE_INTEGER;
 

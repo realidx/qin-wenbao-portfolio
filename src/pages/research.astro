@@ -1,0 +1,52 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import { Content as ResearchPage } from '../content/research.md';
+import { getFeaturedExhibitions } from '../data/imageStore';
+import ExhibitionCard from '../components/ExhibitionCard.astro';
+
+const featuredExhibitions = await getFeaturedExhibitions();
+---
+
+<MainLayout>
+	<section class="pt-32 pb-16">
+		<div class="container-custom">
+			<div class="max-w-3xl">
+				<p class="mb-4 text-sm uppercase tracking-[0.22em] text-[#7b1e25]">Artistic Research</p>
+				<h1 class="text-4xl md:text-6xl font-semibold text-[#241f1c]">Artistic Research</h1>
+			</div>
+
+			<div class="mt-12 grid gap-14 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
+				<div
+					class="prose prose-neutral max-w-none text-[#4c453e] prose-headings:text-[#241f1c] prose-a:text-[#7b1e25]"
+				>
+					<ResearchPage />
+				</div>
+
+				<aside class="border-y border-[#d8d0c0] py-6">
+					<p class="text-sm uppercase tracking-[0.18em] text-[#8a7b6d]">Research Areas</p>
+					<ul class="mt-5 space-y-4 text-sm leading-7 text-[#4c453e]">
+						<li>Abstract art and contemporary theatrical costume</li>
+						<li>Eastern ink wash aesthetics in performance</li>
+						<li>Material experimentation and embodied calligraphy</li>
+						<li>Theatre education and international exchange</li>
+					</ul>
+				</aside>
+			</div>
+		</div>
+	</section>
+
+	<section class="border-t border-[#d8d0c0] py-20 md:py-24">
+		<div class="container-custom">
+			<div class="mb-12 max-w-3xl">
+				<p class="mb-3 text-sm uppercase tracking-[0.22em] text-[#7b1e25]">Related Records</p>
+				<h2 class="text-3xl md:text-5xl font-semibold text-[#241f1c]">
+					Exhibitions and Presentations
+				</h2>
+			</div>
+
+			<div class="grid gap-10 md:grid-cols-2">
+				{featuredExhibitions.map((exhibition) => <ExhibitionCard exhibition={exhibition} />)}
+			</div>
+		</div>
+	</section>
+</MainLayout>

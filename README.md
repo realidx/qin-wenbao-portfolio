@@ -1,6 +1,6 @@
 # Opera Costume Portfolio
 
-An Astro portfolio site for a Chinese opera and stage costume design artist. It includes a Decap CMS admin interface for editing portfolio works, image galleries, and the About page through GitHub-backed content files.
+An Astro portfolio site for a Chinese opera and stage costume design artist. It includes a Decap CMS admin interface for editing portfolio works, exhibition records, image galleries, and profile pages through GitHub-backed content files.
 
 ## Local Development
 
@@ -18,7 +18,7 @@ npm run preview
 
 ## Content
 
-Works are maintained in `src/content/works/*.md`. Uploaded images live in `public/uploads/`.
+Works are maintained in `src/content/works/*.md`. Exhibition records are maintained in `src/content/exhibitions/*.md`. Uploaded images and documents live in `public/uploads/`.
 
 Admin entry:
 
@@ -31,6 +31,11 @@ Current sample works:
 - `da-shun`: Peking Opera Da Shun
 - `nanke-mengji`: Kunqu Opera Nanke Mengji
 - `zaixu-hongmeiyuan`: Qinqiang Opera Zaixu Hongmeiyuan
+
+Current exhibition records:
+
+- `pq2023`: Prague Quadrennial 2023 China Pavilion
+- `tbilisi-2024`: Tbilisi Biennale of Stage Design 2024
 
 Read `CONTENT_GUIDE.md` before adding or replacing work images.
 

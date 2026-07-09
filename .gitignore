@@ -25,3 +25,7 @@ pnpm-debug.log*
 
 # app
 src/data/__tests__/gallery/gallery.yaml
+
+# local source materials
+sources/
+public/uploads/documents/pq2023-qin-wenbao.pdf

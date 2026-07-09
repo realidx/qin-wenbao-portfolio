@@ -19,14 +19,20 @@ This site is an Astro portfolio for Qin Wenbao, with Decap CMS prepared as the e
 `src/content/works/`
 : One Markdown file per portfolio work. Decap edits these files directly.
 
+`src/content/exhibitions/`
+: One Markdown file per exhibition, pavilion, conference, or presentation record.
+
+`src/content/research.md`
+: Main text for the Artistic Research page.
+
 `public/uploads/`
-: Media folder for Decap uploads and public image assets.
+: Media folder for Decap uploads, public image assets, and downloadable documents.
 
 `src/data/galleryData.ts`
-: Type definitions for work records and gallery images.
+: Type definitions for work records, exhibition records, and gallery images.
 
 `src/data/imageStore.ts`
-: Loads work Markdown frontmatter, validates required fields, sorts works, and exposes helpers such as `getWorks`, `getFeaturedWorks`, `getWork`, and `getHeroWork`.
+: Loads Markdown frontmatter, validates required fields, sorts records, and exposes helpers for works and exhibitions.
 
 `src/pages/index.astro`
 : Home page. It renders the hero and selected works.
@@ -36,6 +42,15 @@ This site is an Astro portfolio for Qin Wenbao, with Decap CMS prepared as the e
 
 `src/pages/works/[work].astro`
 : Work detail page. It renders metadata and the GLightbox gallery.
+
+`src/pages/exhibitions/index.astro`
+: Exhibition listing page for pavilion, biennale, and international presentation records.
+
+`src/pages/exhibitions/[exhibition].astro`
+: Exhibition detail page. It renders metadata, optional document download, and the GLightbox gallery.
+
+`src/pages/research.astro`
+: Artistic Research page. Main text comes from `src/content/research.md`.
 
 `src/pages/about.astro`
 : Artist biography page. Main text comes from `src/content/about.md`.
@@ -49,6 +64,9 @@ This site is an Astro portfolio for Qin Wenbao, with Decap CMS prepared as the e
 `src/components/WorkCard.astro`
 : Work card used on the home page and portfolio listing.
 
+`src/components/ExhibitionCard.astro`
+: Exhibition card used on exhibition and research pages.
+
 `src/styles/global.css`
 : Global fonts, color variables, and shared Tailwind component styles.
 
@@ -61,7 +79,7 @@ Each work is a Markdown file with frontmatter:
 id: da-shun
 title: Peking Opera Da Shun
 subtitle: Peking Opera Stage Costume Design
-year: "Representative Work"
+year: 'Representative Work'
 category: Peking Opera
 type: Stage Design and Costume Styling
 role: Production-wide character design
@@ -72,6 +90,31 @@ images:
     title: Stage Presentation
     caption: Image caption.
     type: stage_photo
+featured: true
+order: 1
+---
+```
+
+## Exhibition Content Model
+
+Each exhibition is a Markdown file with frontmatter:
+
+```yaml
+---
+id: pq2023
+title: 'Prague Quadrennial 2023: China Pavilion'
+subtitle: Between
+year: '2023'
+location: Prague, Czech Republic
+role: Participating designer, China Pavilion
+cover: /uploads/exhibitions/pq2023/pq2023-cover.png
+description: Exhibition description.
+document: /uploads/documents/pq2023-qin-wenbao.pdf
+images:
+  - src: /uploads/exhibitions/pq2023/pq2023-installation.jpg
+    title: Installation View
+    caption: Image caption.
+    type: exhibition
 featured: true
 order: 1
 ---

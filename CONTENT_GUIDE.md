@@ -1,6 +1,6 @@
 # Content Guide
 
-The site is now prepared for Decap CMS. Works are stored as Markdown files in `src/content/works/`, and uploaded media is stored under `public/uploads/`.
+The site is now prepared for Decap CMS. Works are stored as Markdown files in `src/content/works/`, exhibition records are stored in `src/content/exhibitions/`, and uploaded media is stored under `public/uploads/`.
 
 ## Admin URL
 
@@ -13,9 +13,12 @@ https://qinwenbao.art/admin
 The admin UI manages:
 
 - Works
+- Exhibitions
 - About page text
+- Artistic Research page text
 - Cover images
 - Gallery images
+- Downloadable exhibition documents
 - Featured status
 - Sort order
 
@@ -29,10 +32,23 @@ src/content/works/nanke-mengji.md
 src/content/works/zaixu-hongmeiyuan.md
 ```
 
+Each exhibition is one Markdown file:
+
+```text
+src/content/exhibitions/pq2023.md
+src/content/exhibitions/tbilisi-2024.md
+```
+
 Images uploaded from Decap go under:
 
 ```text
 public/uploads/
+```
+
+Downloadable documents, such as exhibition PDFs, should go under:
+
+```text
+public/uploads/documents/
 ```
 
 Existing placeholder images are currently organized as:
@@ -41,6 +57,8 @@ Existing placeholder images are currently organized as:
 public/uploads/works/da-shun/
 public/uploads/works/nanke-mengji/
 public/uploads/works/zaixu-hongmeiyuan/
+public/uploads/exhibitions/pq2023/
+public/uploads/exhibitions/tbilisi-2024/
 ```
 
 ## Work Fields
@@ -56,6 +74,21 @@ public/uploads/works/zaixu-hongmeiyuan/
 - `description`: Work description.
 - `images`: Detail image list.
 - `featured`: `true` shows the work on the home page.
+- `order`: Smaller numbers appear first.
+
+## Exhibition Fields
+
+- `id`: URL slug. Use lowercase English, numbers, and hyphens.
+- `title`: Exhibition or event title.
+- `subtitle`: Optional theme or pavilion title.
+- `year`: Year or year range.
+- `location`: City, country, or institution.
+- `role`: Role, such as participating designer or curator team member.
+- `cover`: Cover image path.
+- `description`: Exhibition description.
+- `document`: Optional downloadable PDF path.
+- `images`: Detail image list.
+- `featured`: `true` shows the record on the Artistic Research page.
 - `order`: Smaller numbers appear first.
 
 ## Image Rules
@@ -84,6 +117,8 @@ wechat-image-2026-07-06-final-final.jpeg
 peony-pavilion-du-liniang-first-revision-final-2.jpg
 IMG_9382.JPG
 ```
+
+Large videos should not be uploaded directly to the repository unless they are compressed for web delivery. Prefer a short web-optimized MP4, an external video link, or a still poster image.
 
 ## Authentication Note
 

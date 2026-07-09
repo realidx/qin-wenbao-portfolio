@@ -1,0 +1,80 @@
+---
+import { Download } from 'lucide-astro';
+import MainLayout from '../../layouts/MainLayout.astro';
+import PhotoGrid from '../../components/PhotoGrid.astro';
+import { getExhibition, getExhibitions, getImagesForExhibition } from '../../data/imageStore';
+
+export const getStaticPaths = async () => {
+	const exhibitions = await getExhibitions();
+	return exhibitions.map((exhibition) => ({
+		params: { exhibition: exhibition.id },
+	}));
+};
+
+const { exhibition: exhibitionId } = Astro.params;
+const exhibition = await getExhibition(exhibitionId);
+const images = await getImagesForExhibition(exhibitionId);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+if (!exhibition) {
+	throw new Error(`Exhibition not found: ${exhibitionId}`);
+}
+---
+
+<MainLayout>
+	<section class="pt-32 pb-16">
+		<div class="container-custom">
+			<a href={`${base}/exhibitions`} class="text-sm text-[#7b1e25] hover:underline">
+				Back to Exhibitions
+			</a>
+
+			<div class="mt-10 grid gap-10 lg:grid-cols-[minmax(0,1fr)_360px] lg:items-start">
+				<div>
+					<p class="mb-4 text-sm uppercase tracking-[0.22em] text-[#7b1e25]">
+						{exhibition.subtitle ?? 'Exhibition Record'}
+					</p>
+					<h1 class="text-4xl md:text-6xl font-semibold leading-tight text-[#241f1c]">
+						{exhibition.title}
+					</h1>
+					<p class="mt-8 max-w-3xl text-lg leading-9 text-[#4c453e]">
+						{exhibition.description}
+					</p>
+
+					{
+						exhibition.document && (
+							<a
+								href={exhibition.document}
+								download
+								class="mt-8 inline-flex h-12 items-center gap-3 border border-[#241f1c] bg-[#241f1c] px-5 text-sm font-medium text-white transition-colors hover:border-[#7b1e25] hover:bg-[#7b1e25]"
+							>
+								<Download size={18} />
+								Download Exhibition PDF
+							</a>
+						)
+					}
+				</div>
+
+				<dl class="border-y border-[#d8d0c0] py-6 text-sm">
+					<div class="flex justify-between gap-8 border-b border-[#e8dfd0] py-3">
+						<dt class="text-[#8a7b6d]">Year</dt>
+						<dd class="text-right text-[#241f1c]">{exhibition.year}</dd>
+					</div>
+					<div class="flex justify-between gap-8 border-b border-[#e8dfd0] py-3">
+						<dt class="text-[#8a7b6d]">Location</dt>
+						<dd class="text-right text-[#241f1c]">{exhibition.location}</dd>
+					</div>
+					<div class="flex justify-between gap-8 py-3">
+						<dt class="text-[#8a7b6d]">Role / Focus</dt>
+						<dd class="text-right text-[#241f1c]">{exhibition.role}</dd>
+					</div>
+				</dl>
+			</div>
+		</div>
+	</section>
+
+	<section class="pb-24 md:pb-32">
+		<div class="container-custom">
+			<PhotoGrid images={images} />
+		</div>
+	</section>
+</MainLayout>

@@ -4,10 +4,10 @@ title: About the Artist
 
 ### Qin Wenbao
 
-Qin Wenbao is a professor and graduate supervisor in the Department of Stage Design at the National Academy of Chinese Theatre Arts. His work spans stage design, theatre costume design, character styling, and design education.
+Qin Wenbao is a professor and graduate supervisor in the Department of Stage Design at the National Academy of Chinese Theatre Arts. His work spans stage design, theatre costume design, character styling, artistic research, and design education.
 
-He has been a visiting scholar at the University of Florence and the Royal Academy of Dramatic Art. His academic and creative activities include participation in the Prague Quadrennial, World Stage Design, Critical COSTUME, and other international forums and exhibitions for scenography and costume research.
+His practice is dedicated to exploring the integration of abstract art with contemporary theatrical costume. Taking the corporeal translation of abstract art in theatre as a conceptual foundation, he approaches performance costume as an abstract canvas and investigates how Eastern ink wash art, calligraphic gesture, material structure, and the performing body can become perceptible theatrical language.
 
-His practice focuses on contemporary expressions of traditional Chinese opera costume, stage character design, material experimentation, and the translation of classical theatre aesthetics into modern performance.
+His design work has been selected for World Stage Design, where he also served as a jury member in 2022. His academic and creative work has been presented across international theatre platforms, including USITT, Prague Quadrennial 2019 and 2023, PQ Talks 2023, Critical Costume 2022 and 2024, and World Costume in Action 2024. In 2025, he was invited to conduct a masterclass in Moscow.
 
-His representative works include productions across Peking opera, Kunqu opera, Qinqiang opera, Yue opera, Henan opera, Dian opera, spoken drama, opera, Zhuang opera, and large-scale outdoor performance. He has received major international awards in stage costume and character design, and multiple productions have been selected for or recognized by national stage art awards.
+His representative works include productions across Peking opera, Kunqu opera, Qinqiang opera, Yue opera, Henan opera, Dian opera, spoken drama, opera, Zhuang opera, and large-scale outdoor performance. He continues to share research, creative process, and artistic practice with theatre professionals and emerging designers worldwide.
